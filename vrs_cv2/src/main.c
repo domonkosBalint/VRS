@@ -71,16 +71,25 @@ int main(void)
 
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);  //zapnutie periferie GPIOA
 
-  GPIOA->MODER |= (0b01)<<(5*2);  			//nastavenie hodnoty inputu na dany pin
-  GPIOA->OTYPER &= ~((uint32_t)(1<<5));
-  GPIOA->PUPDR |= (0b01)<<(5*2);			//nastavenie pull up pull down na pozíciu 10 (0b10)
-  GPIOA->OSPEEDR |= (0b11)<<(5*2);
+  GPIOA->MODER |= (uint32_t)((0b01)<<(5*2));	//nastavenie hodnoty inputu na dany pin
+  GPIOA->OTYPER &= ~((0b1)<<5);
+  GPIOA->PUPDR |= (uint32_t)((0b01)<<(5*2));	//nastavenie pull up pull down na pozíciu 10 (0b10)
+  GPIOA->OSPEEDR |= (uint32_t)((0b11)<<(5*2));
 
-  GPIOA->ODR |= 0b0000000000100000;
+  //GPIOA->ODR |= 0b0000000000100000;
 
   /* Infinite loop */
   while (1)
   {
+	  GPIOA->ODR |= (uint16_t)(1 << 5); //zapina
+	  GPIOA->ODR &= ~(uint16_t)(1 << 5); //vypina
+
+	  GPIOA->BSRRL |= ((uint16_t)(1<<5));
+	  GPIOA->BSRRL &= ~((uint16_t)(1<<5));
+
+	  GPIOA->BSRRH |= ((uint16_t)(1<<5));
+	  GPIOA->BSRRH &= ~((uint16_t)(1<<5));
+
 	i++;
   }
   return 0;
