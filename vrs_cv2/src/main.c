@@ -69,6 +69,7 @@ int main(void)
 
   /* TODO - Add your application code here */
 
+  /*
   RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);  //zapnutie periferie GPIOA
 
   GPIOA->MODER |= (uint32_t)((0b01)<<(5*2));	//nastavenie hodnoty inputu na dany pin
@@ -77,10 +78,26 @@ int main(void)
   GPIOA->OSPEEDR |= (uint32_t)((0b11)<<(5*2));
 
   //GPIOA->ODR |= 0b0000000000100000;
+   */
+
+  //Uloha 2
+  	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC,ENABLE);
+
+      GPIOA->MODER |= (uint32_t)((0b01)<<(5*2));
+      GPIOA->OTYPER &= ~((0b1)<<5);
+      GPIOA->PUPDR |= (uint32_t)((0b01)<<(5*2));
+      GPIOA->OSPEEDR |= (uint32_t)((0b11)<<(5*2));
+
+      GPIOC->MODER |=(0b00)<<(13*2);
+      GPIOC->OTYPER &= ~((uint32_t)(1<<13));
+      GPIOC->PUPDR |= (0b00)<<(13*2);
+
 
   /* Infinite loop */
   while (1)
   {
+	  /*
 	  GPIOA->ODR |= (uint16_t)(1 << 5); //zapina
 	  GPIOA->ODR &= ~(uint16_t)(1 << 5); //vypina
 
@@ -89,6 +106,8 @@ int main(void)
 
 	  GPIOA->BSRRH |= ((uint16_t)(1<<5));
 	  GPIOA->BSRRH &= ~((uint16_t)(1<<5));
+	*/
+
 
 	i++;
   }
