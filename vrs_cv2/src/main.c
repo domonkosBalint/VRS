@@ -47,8 +47,11 @@ int getValue(uint16_t button);
 **===========================================================================
 */
 int main(void)
-{  int i = 0;
+{
+  int i = 0;
   int button = 0;
+  int k = 0;
+  int p = 0;
 
   /**
   *  IMPORTANT NOTE!
@@ -122,12 +125,28 @@ int main(void)
 
 	  GPIOA->BSRRH |= ((uint16_t)(1<<5));
 	  GPIOA->BSRRH &= ~((uint16_t)(1<<5));
-*/
+	  */
+
+	  //Uloha 2
+/*
 	  button=getValue(GPIOC->IDR);
 	  if(button==1){
-		  GPIOA->ODR |= (uint16_t)(1 << 5);
+		  GPIOA->ODR |=(uint16_t)(0b1<<5);
 	  }	else {
-		  GPIOA->ODR &= ~(uint16_t)(1 << 5);
+		  GPIOA->ODR &=~((uint16_t)(0b1<<5));
+	  }
+*/
+	  k=0;
+	  p=0;
+	  //Uloha3 1
+	  GPIOA->ODR|=(uint16_t)((0b1)<<5);
+	  for(k;k < 999999;k++)
+	  {
+	  }
+	  GPIOA->ODR&= ~((uint16_t)((0b1)<<5));
+	  for(p;p < 999999 ;p++)
+	  {
+
 	  }
 
 	i++;
