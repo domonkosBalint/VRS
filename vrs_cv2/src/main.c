@@ -52,6 +52,11 @@ int main(void)
   int button = 0;
   int k = 0;
   int p = 0;
+  int button1 = 0;
+  int counter = 0;
+  int tmp1 = 0;
+  int tmp2 = 0;
+  int tmp3 = 0;
 
   /**
   *  IMPORTANT NOTE!
@@ -152,13 +157,55 @@ int main(void)
 	  }
 */
 	  //Uloha3 2
-
+/*
 	  button=getValue(GPIOC->IDR);
 	  if(button==1){
 		  GPIOA->ODR |=(uint16_t)(0b1<<5);
 	  }	else {
 		  GPIOA->ODR &=~((uint16_t)(0b1<<5));
 	  }
+*/
+
+	  //Uloha3 3
+
+	  button1=getValue(GPIOC->IDR);
+	  	if (button1 == 1)
+	  	{
+	  		while(counter < 6)
+	  		{
+	  			counter++; //5 "impulzov"
+	  		}
+	  		counter = 0;
+	  	}
+	  	button1=getValue(GPIOC->IDR);
+	  	if (button1 == 0)
+	  		{
+	  			while(counter < 6)
+	  			{
+	  				counter++; //5 "impulzov"
+	  			}
+	  			counter = 0;
+	  		}
+	  	button1=getValue(GPIOC->IDR);
+	  	if (button1 == 1)
+	  		{
+	  			while(counter < 6)
+	  			{
+	  				counter++; //5 "impulzov"
+
+	  			}
+	  			counter = 0;
+	  			if(tmp1 == 0)
+	  			{
+	  				GPIOA->ODR |=(uint16_t)(0b1<<5);
+	  				tmp1 = 1;
+	  			}
+	  			else if(tmp1 == 1)
+	  			{
+	  				GPIOA->ODR &= ~(uint16_t)(0b1<<5);
+	  				tmp1 = 0;
+	  			}
+	  		}
 
 	i++;
 
