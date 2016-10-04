@@ -135,10 +135,12 @@ int main(void)
 	  }	else {
 		  GPIOA->ODR &=~((uint16_t)(0b1<<5));
 	  }
-*/
+
+	  //Uloha3 1
+/*
 	  k=0;
 	  p=0;
-	  //Uloha3 1
+
 	  GPIOA->ODR|=(uint16_t)((0b1)<<5);
 	  for(k;k < 999999;k++)
 	  {
@@ -147,6 +149,15 @@ int main(void)
 	  for(p;p < 999999 ;p++)
 	  {
 
+	  }
+*/
+	  //Uloha3 2
+
+	  button=getValue(GPIOC->IDR);
+	  if(button==1){
+		  GPIOA->ODR |=(uint16_t)(0b1<<5);
+	  }	else {
+		  GPIOA->ODR &=~((uint16_t)(0b1<<5));
 	  }
 
 	i++;
